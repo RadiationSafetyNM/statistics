@@ -48,3 +48,5 @@ df <- rbind.fill(lapply(data_list, as.data.frame))
 barplot(df$totUseQty, 
         names.arg = df$diagCdNm)  # x축 레이블 설정
 ```
+
+https://github.com/RadiationSafetyNM/statistics/issues/1#issue-2636006516
