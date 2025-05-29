@@ -3,18 +3,50 @@ project:
   output-dir: docs
 
 website:
-  title: "RadiationSafetyNM"
+  title: "핵의학통계"
+  
   navbar:
+    logo: KSNM_logo.png
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+      - text: "사이트사용법"
+        href: posts/manual.qmd
+      - text: "개발과정"
+        href: posts/dev/dev.qmd  
+      - text: "블로그"
+        href: index.qmd   
+      - text: "관련 사이트"
+        href: posts/link.qmd           
+    right:
+      - text: version 0.1.0 (2025-06-??)
+        href: "#"    
+      - icon: github
+        href: https://github.com/
+    search: true
+    
+  sidebar:
+    - title: "개발과정"
+      contents:
+        - section: "공공데이터포털"
+          href: posts/dev/dev.qmd
+          contents:  
+            - text: "테스트"
+              href: posts/dev/test.qmd
+    - title: "관련 사이트"
+      contents:
+        - posts/link.qmd    
 
 format:
   html:
     theme: cosmo
-    css: styles.css
     toc: true
-
-editor: visual
+    toc-depth: 6
+    date-format: "YYYY.M.D"
+    date-modified-format: "YYYY.M.D"    
+    include-after-body:
+      - text: |
+          <script src="/scripts/tooltip.js"></script>
+    
+    comments:
+      utterances:
+        repo: RadiationSafetyNM/website
 

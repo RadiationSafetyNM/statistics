@@ -1,8 +1,23 @@
+# R
+_freeze/
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 .Rprofile
 *.Rproj
-renv/
+.quarto/
 /.quarto/
+raw_data/
+renv/
+
+# Python
+venv/
+__pycache__/
+.ipynb_checkpoints/
+*.code-workspace
+.env/
+
+# general
+conquest/
+data/
