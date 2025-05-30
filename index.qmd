@@ -87,6 +87,26 @@ if (SHOW_SETUP_LOG) flog.info("🎲 Seed 설정 완료: 2025")
 ```
 
 ```{r}
+#| label: unzip
+#| include: false
+
+library(fs)
+
+# 압축 해제 대상 폴더 경로
+zip_dir     <- "raw_data"
+unzip_dir   <- "data"  # 압축 해제 대상 폴더
+
+# zip 파일 목록 수집
+zip_files <- dir_ls(zip_dir, glob = "*.zip")
+
+# 압축 해제 실행
+purrr::walk(zip_files, function(zf) {
+  message("🔓 압축 해제 중: ", basename(zf))
+  unzip(zf, exdir = unzip_dir)
+})
+```
+
+```{r}
 #| label: load_data
 #| message: true
 
