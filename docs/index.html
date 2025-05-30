@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="BenKorea">
+<meta name="description" content="개발 중">
 
-<title>Radiation Safety for Nuclear Medicine – 핵의학통계</title>
+<title>핵의학통계</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -38,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5e113dff50f1ad0d01940251022289e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-46b5437e78f6e9148093fe0dd53110ae.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -136,15 +172,41 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Radiation Safety for Nuclear Medicine</h1>
-</div>
+<h1 class="title">핵의학통계</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">요양기관 개설현황</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    개발 중
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>BenKorea </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2025.5.29</p>
+    </div>
+  </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">2025.5.30</p>
+    </div>
+  </div>
     
   </div>
   
@@ -154,25 +216,106 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 키워드 지정 (예: "요양기관_개설현황")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>keyword <span class="ot">&lt;-</span> <span class="st">"요양기관_개설현황"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># CSV 파일 병합 로드 실행 (csv_loader.R의 함수 사용)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>hospital_list <span class="ot">&lt;-</span> <span class="fu">csv_loader_keyword</span>(keyword)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>INFO [2025-05-30 15:57:33] 📁 총 4개의 파일을 처리합니다: 요양기관_개설현황_2021.csv, 요양기관_개설현황_2022.csv, 요양기관_개설현황_2023.csv, 요양기관_개설현황_2024.csv
+INFO [2025-05-30 15:57:33] ▶ 파일 시작: 요양기관_개설현황_2021.csv
+INFO [2025-05-30 15:57:33] 🔍 인코딩 추정: EUC-KR (신뢰도: 1.00) - 요양기관_개설현황_2021.csv
+INFO [2025-05-30 15:57:34] ✅ iconv + fread 성공: 요양기관_개설현황_2021.csv
+INFO [2025-05-30 15:57:34] ▶ 파일 시작: 요양기관_개설현황_2022.csv
+INFO [2025-05-30 15:57:34] 🔍 인코딩 추정: EUC-KR (신뢰도: 1.00) - 요양기관_개설현황_2022.csv
+INFO [2025-05-30 15:57:34] ✅ iconv + fread 성공: 요양기관_개설현황_2022.csv
+INFO [2025-05-30 15:57:34] ▶ 파일 시작: 요양기관_개설현황_2023.csv
+INFO [2025-05-30 15:57:34] 🔍 인코딩 추정: EUC-KR (신뢰도: 1.00) - 요양기관_개설현황_2023.csv
+INFO [2025-05-30 15:57:34] ✅ iconv + fread 성공: 요양기관_개설현황_2023.csv
+INFO [2025-05-30 15:57:34] ▶ 파일 시작: 요양기관_개설현황_2024.csv
+INFO [2025-05-30 15:57:34] 🔍 인코딩 추정: EUC-KR (신뢰도: 1.00) - 요양기관_개설현황_2024.csv
+INFO [2025-05-30 15:57:34] ✅ iconv + fread 성공: 요양기관_개설현황_2024.csv</code></pre>
+</div>
 <div class="cell-output cell-output-stderr">
-<pre><code>No encoding supplied: defaulting to UTF-8.</code></pre>
+<pre><code>Warning in data.table::rbindlist(dt_list, use.names = TRUE, fill = TRUE):
+Coercing 'character' RHS to 'integer' to match the type of column 8 named
+'개설일자'.</code></pre>
 </div>
-<div class="cell-output-display">
-<div id="fig-petct" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-petct-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-petct-1.png" class="img-fluid figure-img" width="672">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in data.table::rbindlist(dt_list, use.names = TRUE, fill = TRUE): NAs
+introduced by coercion</code></pre>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-petct-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: 2023년도 FDG PET/CT 건수
-</figcaption>
-</figure>
+<div class="cell-output cell-output-stdout">
+<pre><code>INFO [2025-05-30 15:57:35] 📊 최종 병합된 데이터: 403945행 × 11열</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 결과 미리보기</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(hospital_list)) {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  futile.logger<span class="sc">::</span><span class="fu">flog.info</span>(<span class="st">"미리보기: 상위 5행"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">head</span>(hospital_list, <span class="dv">5</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  futile.logger<span class="sc">::</span><span class="fu">flog.warn</span>(<span class="st">"데이터 로드 실패 또는 병합된 데이터 없음"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>INFO [2025-05-30 15:57:35] 미리보기: 상위 5행
+                           요양기관명     시도명    시군구명 요양종별
+                               &lt;char&gt;     &lt;char&gt;      &lt;char&gt;   &lt;char&gt;
+1: ""사""대한산업보건협회부설경북의원   경상북도      경산시     의원
+2:                    (VOM)봄안과의원 대구광역시        동구     의원
+3:                   (복지)예사랑병원 부산광역시        서구 정신병원
+4:           (사) 경찰공제회 포항의원   경상북도 포항시 남구     의원
+5:             (사)경찰공제회남부의원 인천광역시      남동구     의원
+                                                  주소 표시과목코드
+                                                &lt;char&gt;       &lt;char&gt;
+1:                   경상북도 경산시 진량읍 공단1로 28            0
+2: 대구광역시 동구 안심로 58, 3층 (율하동, 율하메디빌)           12
+3:        부산광역시 서구 옥천로130번길 38 (아미동2가)            $
+4:              경상북도 포항시 남구 오천읍 냉천로 656            0
+5:            인천광역시 남동구 아암대로 1247 (고잔동)            0
+       표시과목   개설일자 도로명주소 표시과목명 암호화된요양기호
+         &lt;char&gt;     &lt;IDat&gt;     &lt;char&gt;     &lt;char&gt;           &lt;char&gt;
+1:       일반의 1995-01-24       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;
+2:         안과 2014-01-02       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;
+3: 해당사항없음 2012-02-29       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;
+4:       일반의 2001-06-13       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;
+5:       일반의 1998-09-28       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;</code></pre>
 </div>
 </div>
+<p>핵의학 진료과목을 가진 요양기관을 조사하가 위해 공공데이터포털에서 요양기관개설현황을 raw_data 폴더에 다운로드 하였다. 파일이름을 <code>요양기관_개설현황_yyyy.csv</code>로 수정하여 data 폴더에 저장하였다. Rㅇㅅ</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in rbindlist(lapply(files, function(f) {: Coercing 'character' RHS to
+'integer' to match the type of column 8 named '개설일자'.</code></pre>
 </div>
-<p>https://github.com/RadiationSafetyNM/statistics/issues/1#issue-2636006516</p>
-<script src="https://utteranc.es/client.js" repo="[ENTER REPO HERE]" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
-</script>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in rbindlist(lapply(files, function(f) {: NAs introduced by coercion</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                           요양기관명     시도명    시군구명 요양종별
+                               &lt;char&gt;     &lt;char&gt;      &lt;char&gt;   &lt;char&gt;
+1: ""사""대한산업보건협회부설경북의원   경상북도      경산시     의원
+2:                    (VOM)봄안과의원 대구광역시        동구     의원
+3:                   (복지)예사랑병원 부산광역시        서구 정신병원
+4:           (사) 경찰공제회 포항의원   경상북도 포항시 남구     의원
+5:             (사)경찰공제회남부의원 인천광역시      남동구     의원
+6:  (사)누가선교회 누가플러스치과의원 서울특별시    영등포구 치과의원
+                                                         주소 표시과목코드
+                                                       &lt;char&gt;       &lt;char&gt;
+1:                          경상북도 경산시 진량읍 공단1로 28            0
+2:        대구광역시 동구 안심로 58, 3층 (율하동, 율하메디빌)           12
+3:               부산광역시 서구 옥천로130번길 38 (아미동2가)            $
+4:                     경상북도 포항시 남구 오천읍 냉천로 656            0
+5:                   인천광역시 남동구 아암대로 1247 (고잔동)            0
+6: 서울특별시 영등포구 양평로 67, 2층 (당산동5가, 한강포스빌)           27
+       표시과목   개설일자  year 도로명주소 표시과목명 암호화된요양기호
+         &lt;char&gt;     &lt;IDat&gt; &lt;int&gt;     &lt;char&gt;     &lt;char&gt;           &lt;char&gt;
+1:       일반의 1995-01-24  2021       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;
+2:         안과 2014-01-02  2021       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;
+3: 해당사항없음 2012-02-29  2021       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;
+4:       일반의 2001-06-13  2021       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;
+5:       일반의 1998-09-28  2021       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;
+6:         치과 2011-06-23  2021       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;</code></pre>
+</div>
+</div>
 
 
 

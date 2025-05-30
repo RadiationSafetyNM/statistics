@@ -1,0 +1,3 @@
+# .Renviron
+# Quarto setup 로그 출력 여부
+SHOW_SETUP_LOG=false

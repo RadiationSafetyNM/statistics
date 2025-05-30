@@ -7,49 +7,101 @@ date-modified: last-modified
 categories: [요양기관 개설현황]
 ---
 
-핵의학 진료과목을 가진 요양기관을 조사하가 위해
-공공데이터포털에서 요양기관개설현황을 raw_data 폴더에 다운로드 하였다.
-파일이름을 `요양기관_개설현황_yyyy.csv`로 수정하여 data 폴더에 저장하였다.
+```{r}
+#| label: setup-logger
+#| include: false
+#| echo: false
+#| results: hide
+
+library(futile.logger)
+
+# 환경변수 기반으로 setup 로그 여부 결정
+show_setup_log <- tolower(Sys.getenv("SHOW_SETUP_LOG", unset = "false")) == "true"
+
+flog.threshold(INFO)
+flog.layout(layout.simple)
+
+assign("SHOW_SETUP_LOG", show_setup_log, envir = .GlobalEnv)
+
+if (SHOW_SETUP_LOG) flog.info("🛠️ setup-logger 초기화 완료")
+```
 
 ```{r}
-library(readr)
-#| label: fread-list
-#| echo: false
+#| label: setup-options
+#| include: false
 
-library(data.table)
-
-# 1) 대상 CSV 파일 목록
-files <- list.files(
-  path       = "data",
-  pattern    = "^요양기관_개설현황_\\d{4}.*\\.csv$",
-  full.names = TRUE
+options(
+  scipen = 999
+  #stringsAsFactors = FALSE
 )
 
-# 2) readLines → iconv → fread(text=…) → year 컬럼 추가
-hospital_list <- rbindlist(
-  lapply(files, function(f) {
-    # (1) CP949 인코딩으로 라인 읽기
-    raw_lines <- readLines(f, encoding = "CP949")
-    # (2) UTF-8로 변환
-    utf8_lines <- iconv(raw_lines, from = "CP949", to = "UTF-8")
-    # (3) 하나의 문자열로 합쳐 fread에 전달
-    dt <- fread(text = paste(utf8_lines, collapse = "\n"))
-    # (4) 파일명에서 연도 추출해 추가
-    yr <- as.integer(sub(
-      ".*요양기관_개설현황_(\\d{4}).*\\.csv$", "\\1",
-      basename(f)
-    ))
-    dt[, year := yr]
-    dt
-  }),
-  use.names = TRUE,
-  fill      = TRUE
-)
+if (SHOW_SETUP_LOG) flog.info("⚙️ options 설정 완료")
+```
 
-# 3) 결과 확인
-head(hospital_list)
+```{r}
+#| label: setup-packages
+#| include: false
 
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, data.table, fs, purrr)
+
+if (SHOW_SETUP_LOG) flog.info("📦 패키지 로딩 완료")
+```
+
+```{r}
+#| label: setup-funcs
+#| include: false
+
+fs::dir_ls("R", glob = "*.R") |> purrr::walk(source)
+
+if (SHOW_SETUP_LOG) flog.info("📄 사용자 정의 함수 로드 완료")
+```
+
+```{r}
+#| label: setup-paths
+#| include: false
+
+data_dir   <- "data"
+output_dir <- "outputs"
+
+if (SHOW_SETUP_LOG) {
+  flog.info("📁 데이터 경로: %s", data_dir)
+  flog.info("📂 출력 경로: %s", output_dir)
+}
+```
+
+```{r}
+#| label: setup-seed
+#| include: false
+
+set.seed(2025)
+
+if (SHOW_SETUP_LOG) flog.info("🎲 Seed 설정 완료: 2025")
+```
+
+```{r}
+#| label: setup-env
+#| include: false
+# 환경 변수 예시 (API 키 등)
+# Sys.setenv(MY_API_KEY = "your-key-here")
+```
+
+```{r}
+#| label: load_data
+#| message: true
+
+# 키워드 지정 (예: "요양기관_개설현황")
+keyword <- "요양기관_개설현황"
+
+# CSV 파일 병합 로드 실행 (csv_loader.R의 함수 사용)
+raw_list <- csv_loader_keyword(keyword)
 
 
 ```
 
+```{r the-end}
+
+
+```
+
+핵의학 진료과목을 가진 요양기관을 조사하가 위해 공공데이터포털에서 요양기관개설현황을 raw_data 폴더에 다운로드 하였다. 파일이름을 `요양기관_개설현황_yyyy.csv`로 수정하여 data 폴더에 저장하였다. Rㅇㅅ
